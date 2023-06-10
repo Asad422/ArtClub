@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "5264505458",
+    "project_id": "artclub-25b89",
+    "storage_bucket": "artclub-25b89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5264505458:android:33737995c3269836c920eb",
+        "android_client_info": {
+          "package_name": "com.example.artclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5264505458-kdtajem4c0fiuanitnls89r4g8eupit7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdQkRplJZJ3UHnEWWpybN2KdfRR9q2Jek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5264505458-kdtajem4c0fiuanitnls89r4g8eupit7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
