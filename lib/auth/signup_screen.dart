@@ -94,11 +94,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       TextSpan(
-                        text : 'Зарегестрироваться',
+                        text : ' Зарегистрироваться',
                         style: TextStyle(
                            decoration: TextDecoration.underline,
                            color: white,
-                           fontSize: 25
+                           fontSize: 20
                         )
                       )
                     ]
@@ -115,15 +115,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
           content: Container(
             width: context.screenWidth/9,
             height: context.screenHeight/6,
-            child: customTextField(title: 'Email',hint: 'example@mail.ru',controller: forget)),
+            child:  Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        'Забыли пароль?'.text.color(Colors.black).size(16).make(),
+        5.heightBox,
+        TextFormField(
+          controller: forget,
+    style: TextStyle(color: Colors.black),
+          decoration:   InputDecoration(
+            
+            hintStyle: TextStyle(
+              color: Colors.black,
+            ),
+            
+            hintText: 'example@mail.ru',
+            isDense: true,
+            fillColor:Colors.transparent,
+            filled: true,
+            enabledBorder:OutlineInputBorder(
+              borderSide: BorderSide(color:Colors.blue)
+            ) ,
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color:Colors.blue)
+            )
+          ),
+        ),
+      ],
+    ),
+  )),
           actions: <Widget>[
            
             TextButton(
               onPressed: (){
-                auth.sendPasswordResetEmail(email: forget.text);
+                if(forget.text != ''){
+                  auth.sendPasswordResetEmail(email: forget.text);
                 Navigator.pop(context);
                VxToast.show(context, msg: 'Письмо с переустановкой пароля было отправлено на ' + forget.text);
               
+                }
+                
               },
               child: const Text('Ок'),
             ),

@@ -60,6 +60,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                               return 
                     
                     MasonryGridView.count(
+                      reverse: true,
               crossAxisCount: 2,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
@@ -92,7 +93,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                         GestureDetector(
                           onTap: () {
                             showModalBottomSheet(
-                              
+                                
                               context: context,
                               builder: (BuildContext context) {
                                 return Container(

@@ -102,6 +102,63 @@ class AuthController extends GetxController{
 
        
     }
+
+    removePostfromPosts ({String? name_product}) async {
+   final collection = FirebaseFirestore.instance
+      .collection('Posts')
+      .doc('Posts');
+  final docSnap = await collection.get();
+  List products = docSnap.get('posts');
+  List item = products.where((element) => element['name'].contains(name_product))
+.      toList();
+  collection.update({'posts': FieldValue.arrayRemove(item)});
+
+  
+}
+removePostfromCategories ({String? name_product,String? category_name}) async {
+   final collection = FirebaseFirestore.instance
+      .collection('categories')
+      .doc(category_name);
+  final docSnap = await collection.get();
+  List products = docSnap.get('posts');
+  List item = products.where((element) => element['name'].contains(name_product))
+.      toList();
+  collection.update({'posts': FieldValue.arrayRemove(item)});
+}
+
+
+removePostFromposts({String? category_name}){
+  FirebaseFirestore.instance.collection("posts").doc(category_name).delete();
+
+}
+
+removePostFromusers({String? post_name}){
+  firestore.collection('users').get().then((snapshot) async {
+  for (DocumentSnapshot ds in snapshot.docs) {
+      final collection = FirebaseFirestore.instance
+      .collection('users')
+      .doc(ds.id);
+  final docSnap = await  collection.get();
+  List products = docSnap.get('my_saved_posts');
+  List item = products.where((element) => element['name'].contains(post_name))
+.      toList();
+  collection.update({'my_saved_posts': FieldValue.arrayRemove(item)});
+  }
+});
+firestore.collection('users').get().then((snapshot) async {
+  for (DocumentSnapshot ds in snapshot.docs) {
+      final collection = FirebaseFirestore.instance
+      .collection('users')
+      .doc(ds.id);
+  final docSnap = await  collection.get();
+  List products = docSnap.get('my_posted_posts');
+  List item = products.where((element) => element['name'].contains(post_name))
+.      toList();
+  collection.update({'my_posted_posts': FieldValue.arrayRemove(item)});
+  }
+});
+
+}
     addPostToCategory(
         
         { String ? post_name,
