@@ -57,21 +57,21 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                               );
                             } else {
                               var data = snapshot.data!.docs;
+                              var reverse = data[0]['posts'].reversed.toList();
                               return 
                     
                     MasonryGridView.count(
-                      reverse: true,
               crossAxisCount: 2,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              itemCount: data[0]['posts'].length,
+              itemCount:reverse.length,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
-                        data[0]['posts'][index]['img'],
+                        reverse[index]['img'],
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
@@ -85,7 +85,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                         data[0]['posts'][index]['name'],
+                        reverse[index]['name'],
                          
                           style: const TextStyle(
                           color: white,     fontWeight: FontWeight.w700, fontSize: 12),
@@ -106,7 +106,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                      data[0]['posts'][index]['name'],
+                                      reverse[index]['name'],
                                       
                                         style: TextStyle(
                                         
@@ -136,7 +136,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                               CrossAxisAlignment.start,
                                           children:  [
                                             Text(
-                                              "Тэги : ${data[0]['posts'][index]['tags'].join(",")}",
+                                              "Тэги : ${reverse[index]['tags'].join(",")}",
                                               style: TextStyle(fontSize: 14),
                                               textAlign: TextAlign.left,
                                             ),
@@ -144,7 +144,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                               height: 20,
                                             ),
                                             Text(
-                                             'Автор: ' + data[0]['posts'][index]['author'],
+                                             'Автор: ' + reverse[index]['author'],
                                               style: TextStyle(
                                                   fontSize: 19,
                                                   fontWeight: FontWeight.w600),
@@ -154,7 +154,7 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                               height: 12,
                                             ),
                                             Text(
-                                              "Категория: " + data[0]['posts'][index]['category'],
+                                              "Категория: " + reverse[index]['category'],
                                               style: TextStyle(
                                                   fontSize: 19,
                                                   fontWeight: FontWeight.w600),
@@ -168,15 +168,15 @@ class _Home_Page_ScreenState extends State<Home_Page_Screen> {
                                           
                                           Navigator.pop(context);
                                           controller.save(
-                                            url: data[0]['posts'][index]['img'],
-                                            name: data[0]['posts'][index]['name'],
+                                            url: reverse[index]['img'],
+                                            name: reverse[index]['name'],
                                             context: context,
-                                            img: data[0]['posts'][index]['img'],
-                                            tag1: data[0]['posts'][index]['tags'][0],
-                                            tag2: data[0]['posts'][index]['tags'][1],
-                                            tag3: data[0]['posts'][index]['tags'][2],
-                                            author: data[0]['posts'][index]['author'],
-                                            category: data[0]['posts'][index]['category'],
+                                            img: reverse[index]['img'],
+                                            tag1: reverse[index]['tags'][0],
+                                            tag2: reverse[index]['tags'][1],
+                                            tag3: reverse[index]['tags'][2],
+                                            author: reverse[index]['author'],
+                                            category: reverse[index]['category'],
             
             
                                       );
